@@ -4,10 +4,11 @@ const mongoose = require("mongoose");
 const User = require("./models/user");
 const Post = require("./models/post");
 const db = mongoose.connection;
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+const PostRoute = require("./routes/postsRoute");
 
-app.get("/", function(req, res) {
-  res.send("Hello World");
-});
+app.use("/posts", PostRoute);
 
 mongoose
   .connect("mongodb://localhost/instaBook", { useNewUrlParser: true })
@@ -31,6 +32,6 @@ mongoose
   })
   .catch(err => console.log(err));
 
-app.listen(3000, () => {
+app.listen(8000, () => {
   console.log("Server Started Succesfully");
 });
