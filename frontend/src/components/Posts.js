@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PostItem from "../components/PostItem";
 
 const Container = styled.div`
-  width: 600px;
+  width: 614px;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr;

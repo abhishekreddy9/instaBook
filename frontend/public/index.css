@@ -10,3 +10,10 @@
 .headerFont:hover {
   color: white;
 }
+
+.likeButton {
+  height: 21px;
+  width: 23px;
+  margin: 0px;
+  padding: 0px;
+}

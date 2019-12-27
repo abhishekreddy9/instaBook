@@ -1,12 +1,28 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import UserPostProfilePic from "./UserPostProfilePic";
+import Like from "./Like";
+
 const Container = styled.div`
   width: 100%;
   border: 2px solid #efefef;
-  height: 600px;
+  height: 620px;
   margin: 10px 0px 20px 0px;
   background-color: white;
 `;
+
+const LikeContainer = styled.div`
+  margin: 15px 0 0 15px;
+`;
+
+const UserProfilePicContainer = styled.div`
+  height: 50px;
+`;
+
+const ImageKeyFrame = keyframes`
+0%{opacity:0;}
+50%{opacity:0.5;}
+100%{opacity:0.9;}`;
 
 const ImageContainer = styled.div`
   height: 500px;
@@ -14,6 +30,7 @@ const ImageContainer = styled.div`
   background-size: cover;
   opacity: ${props => (props.animation ? "1" : "0")};
   transition: all 0.3s ease-out;
+  animation: ${ImageKeyFrame} 1s ease-in-out;
   &:hover {
     opacity: 0.9;
   }
@@ -30,14 +47,26 @@ class PostItem extends React.Component {
     }, 100);
   }
 
+  clicked = () => {
+    console.log("clicked");
+  };
+
   render() {
     return (
       <Container>
+        <UserProfilePicContainer>
+          <UserPostProfilePic
+            name={this.props.data.userId.name}
+            photo={this.props.data.image}
+          />
+        </UserProfilePicContainer>
         <ImageContainer
           url={this.props.data.image}
           animation={this.state.animation}
         />
-        <h1>{this.props.data.description}</h1>
+        <LikeContainer>
+          <Like />
+        </LikeContainer>
       </Container>
     );
   }
